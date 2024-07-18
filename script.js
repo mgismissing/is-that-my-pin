@@ -5,8 +5,9 @@ var i = 0;
 const codes = {
     "Andrea Graziani"   : ["swipe", null,                        "17/07/2024", true,  "his", "he" ],
     "Gabriele Graziani" : ["pin",   "2010",                      "18/07/2024", true,  "his", "he" ],
+    "Ivonne Marchi"     : ["swipe", null,                        "12/07/2024", true,  "her", "she"],
     "Maila Quaresima"   : ["swipe", null,                        "18/07/2024", true,  "her", "she"],
-    "Mattia Chialastri" : ["pin",   "Frocio",                    "28/09/2010", true,  "its", "it "],
+    "Stefano Quaresima" : ["swipe", null,                        "12/07/2024", true,  "his", "he" ],
     "Sofia Graziani"    : ["pass",  "sushi",                     "18/07/2024", false, "her", "she"],
     "Thomas Bonera"     : ["comb",  [2, 5, 8, 7, 6],             "16/07/2024", true,  "his", "he" ],
 };
