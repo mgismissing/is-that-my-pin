@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>is-that-my-pin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>is-that-my-pin</h1>
+        <form id="pinForm">
+            <label for="name">Name and surname:</label>
+            <input type="text" id="name" name="name" required>
+            <button type="submit">Get code</button>
+        </form>
+        <div id="result"><p id="result-text"></p></div>
+        <div id="desc"><p id="desc-text"></p></div>
+        <div id="grid" class="grid-container" hidden></div>
+        <div id="footer"><p id="footer-text"></p></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
