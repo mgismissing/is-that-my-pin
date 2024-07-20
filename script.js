@@ -4,7 +4,7 @@ let replaceXkeep = false
 
 const codes = {
     "Andrea Graziani"   : ["swipe", null,                        "17/07/2024", true,  "his", "he" ],
-    "Angelica"          : ["pin",   "65X2",                      "20/07/2024", true,  "her", "she"],
+    "Angelica Larosa"   : ["pin",   "6512",                      "20/07/2024", true,  "her", "she"],
     "Beatrice Bejan"    : ["pin",   "1XXXXXXX0",                 "20/07/2024", true,  "her", "she"],
     "Gabriele Graziani" : ["pin",   "2010",                      "18/07/2024", true,  "his", "he" ],
     "Ivonne Marchi"     : ["swipe", null,                        "12/07/2024", true,  "her", "she"],
