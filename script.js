@@ -1,13 +1,17 @@
 console.log("loaded script")
 
-var i = 0;
+let replaceXkeep = false
 
 const codes = {
     "Andrea Graziani"   : ["swipe", null,                        "17/07/2024", true,  "his", "he" ],
+    "Angelica"          : ["pin",   "65X2",                      "20/07/2024", true,  "her", "she"],
+    "Beatrice Bejan"    : ["pin",   "1XXXXXXX0",                 "20/07/2024", true,  "her", "she"],
     "Gabriele Graziani" : ["pin",   "2010",                      "18/07/2024", true,  "his", "he" ],
     "Ivonne Marchi"     : ["swipe", null,                        "12/07/2024", true,  "her", "she"],
     "Maila Quaresima"   : ["swipe", null,                        "18/07/2024", true,  "her", "she"],
+    "Mattia Chialastri" : ["pin",   "XXXXXX",                    "19/07/2024", true,  "his", "he" ],
     "Stefano Quaresima" : ["swipe", null,                        "12/07/2024", true,  "his", "he" ],
+    "Sofia Chialastri"  : ["pin",   "XXXX",                      "20/07/2024", true,  "her", "she"],
     "Sofia Graziani"    : ["pass",  "sushi",                     "18/07/2024", false, "her", "she"],
     "Thomas Bonera"     : ["comb",  [2, 5, 8, 7, 6],             "16/07/2024", true,  "his", "he" ],
 };
@@ -29,7 +33,8 @@ document.getElementById("pinForm").addEventListener("submit", function(e) {
             footer.innerText = `This is not ${codes[fullName][4]} code anymore because ${codes[fullName][5]} changed it.`
         }
         if (codes[fullName][0] == "swipe") {
-            desc.innerText = "None. Swipe and you're in.";
+            desc.innerText = "Swipe and you're in.";
+            triggerSwipeAnimation();
         }
         if (codes[fullName][0] == "comb") {
             createGrid("grid", codes[fullName][1]);
@@ -67,7 +72,7 @@ function createGrid(containerId, combination) {
     }
     
     // Create canvas for drawing lines
-    console.log("creating canvas")
+    console.log("creating canvas");
     const canvas = document.createElement('canvas');
     canvas.width = container.clientWidth;
     canvas.height = container.clientHeight;
@@ -77,7 +82,7 @@ function createGrid(containerId, combination) {
     const ctx = canvas.getContext('2d');
 
     // Coordinates of the dots
-    console.log("getting dot coordinates")
+    console.log("getting dot coordinates");
     const dotPositions = Array.from(container.getElementsByClassName('dot')).map(dot => {
         const rect = dot.getBoundingClientRect();
         const parentRect = container.getBoundingClientRect();
@@ -127,6 +132,8 @@ function waitForMs(ms) {
 }
 
 async function typeWriter(text, element, delay) {
+    replaceXkeep = text.includes("X");
+    
     const letters = text.split("");
     let i = 0;
     let textBuf = "";
@@ -134,8 +141,27 @@ async function typeWriter(text, element, delay) {
     while(i < letters.length) {
         await waitForMs(delay);
         textBuf += letters[i];
-        element.innerText = textBuf;
+        element.innerText = replaceX(textBuf);
         i++;
     }
+    
+    while (replaceXkeep) {
+        await waitForMs(10);
+        element.innerText = replaceX(text);
+    }
     return;
+}
+
+function triggerSwipeAnimation() {
+    const arrow = document.getElementById('arrow');
+    arrow.classList.add('animate');
+
+    // Reset the animation after it ends
+    arrow.addEventListener('animationend', () => {
+        arrow.classList.remove('animate');
+    }, { once: true });
+}
+
+function replaceX(str) {
+    return str.replace(/X/g, () => Math.floor(Math.random() * 10));
 }
