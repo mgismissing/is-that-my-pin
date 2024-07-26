@@ -1,30 +1,40 @@
-console.log("loaded script")
+console.log("loaded script");
 
-let replaceXkeep = false
+const reloadButton = document.getElementById("reloadButton");
+
+reloadButton.style.display = "none";
+
+let replaceXkeep = "None";
+
+const randomChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
 const codes = {
     "Andrea Graziani"   : ["swipe", null,                        "17/07/2024", true,  "his", "he" ],
     "Angelica Larosa"   : ["pin",   "6512",                      "20/07/2024", true,  "her", "she"],
     "Beatrice Bejan"    : ["pin",   "1XXXXXXX0",                 "20/07/2024", true,  "her", "she"],
+    //"Chantal D"       : ["pin",   "2014",                      "26/07/2024", true,  "her", "she"],
     "Gabriele Graziani" : ["pin",   "2010",                      "18/07/2024", true,  "his", "he" ],
     "Ivonne Marchi"     : ["swipe", null,                        "12/07/2024", true,  "her", "she"],
     "Maila Quaresima"   : ["swipe", null,                        "18/07/2024", true,  "her", "she"],
     "Mattia Chialastri" : ["pin",   "XXXXXX",                    "19/07/2024", true,  "his", "he" ],
     "Stefano Quaresima" : ["swipe", null,                        "12/07/2024", true,  "his", "he" ],
     "Sofia Chialastri"  : ["pin",   "XXXX",                      "20/07/2024", true,  "her", "she"],
-    "Sofia Graziani"    : ["pass",  "sushi",                     "18/07/2024", false, "her", "she"],
+    "Sofia Graziani"    : ["pass",  "YYYYYY",                    "18/07/2024", true,  "her", "she"],
     "Thomas Bonera"     : ["comb",  [2, 5, 8, 7, 6],             "16/07/2024", true,  "his", "he" ],
 };
 
-document.getElementById("pinForm").addEventListener("submit", function(e) {
+document.getElementById("pinForm").addEventListener("submit", async function(e) {
     clearDiv("grid");
     
     e.preventDefault();
     const fullName = document.getElementById("name").value.trim();
+    
+    document.getElementById("pinForm").innerHTML = "";
 
     const result = document.getElementById("result-text");
     const footer = document.getElementById("footer-text");
     const desc = document.getElementById("desc-text");
+    
     if (codes[fullName]) {
         result.innerText = `${fullName}'s code as of ${codes[fullName][2]} is:`;
         desc.innerText = "";
@@ -53,6 +63,8 @@ document.getElementById("pinForm").addEventListener("submit", function(e) {
         footer.innerText = "We don't know it, yet...";
         desc.innerText = "";
     }
+    
+    reloadButton.style.display = "block";
 });
 
 
@@ -132,7 +144,7 @@ function waitForMs(ms) {
 }
 
 async function typeWriter(text, element, delay) {
-    replaceXkeep = text.includes("X");
+    replaceXkeep = text;
     
     const letters = text.split("");
     let i = 0;
@@ -141,13 +153,13 @@ async function typeWriter(text, element, delay) {
     while(i < letters.length) {
         await waitForMs(delay);
         textBuf += letters[i];
-        element.innerText = replaceX(textBuf);
+        element.innerText = replaceX(textBuf, randomChars);
         i++;
     }
     
-    while (replaceXkeep) {
-        await waitForMs(10);
-        element.innerText = replaceX(text);
+    while (replaceXkeep == text) {
+        await waitForMs(delay);
+        element.innerText = replaceX(text, randomChars);
     }
     return;
 }
@@ -162,6 +174,6 @@ function triggerSwipeAnimation() {
     }, { once: true });
 }
 
-function replaceX(str) {
-    return str.replace(/X/g, () => Math.floor(Math.random() * 10));
+function replaceX(str, charPool) {
+    return str.replace(/X/g, () => Math.floor(Math.random() * 10)).replace(/Y/g, () => charPool[Math.floor(Math.random() * charPool.length)]);
 }
