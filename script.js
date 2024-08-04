@@ -19,7 +19,7 @@ const codes = {
     "Mattia Chialastri" : ["pin",   "XXXXXX",                    "19/07/2024", true,  "his", "he" ],
     "Stefano Quaresima" : ["swipe", null,                        "12/07/2024", true,  "his", "he" ],
     "Sofia Chialastri"  : ["pin",   "XXXX",                      "20/07/2024", true,  "her", "she"],
-    "Sofia Graziani"    : ["pass",  "YYYYYY",                    "18/07/2024", true,  "her", "she"],
+    "Sofia Graziani"    : ["pass",  "Manga",                     "04/08/2024", true,  "her", "she"],
     "Thomas Bonera"     : ["comb",  [2, 5, 8, 7, 6],             "16/07/2024", true,  "his", "he" ],
 };
 
