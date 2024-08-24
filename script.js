@@ -10,6 +10,7 @@ const randomChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456
 
 const codes = {
     "Andrea Graziani"   : ["swipe", null,                        "17/07/2024", true,  "his", "he" ],
+    "Andrei Alexa"      : ["pin",   "1212",                      "24/28/2024", true,  "his", "he" ],
     "Angelica Larosa"   : ["pin",   "6512",                      "20/07/2024", true,  "her", "she"],
     "Beatrice Bejan"    : ["pin",   "1XXXXXXX0",                 "20/07/2024", true,  "her", "she"],
     //"Chantal D"       : ["pin",   "2014",                      "26/07/2024", true,  "her", "she"],
